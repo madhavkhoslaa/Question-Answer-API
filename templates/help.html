@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>This is help for the API endpoints</title>
+</head>
+<body>
+<b>endpoints available</b>
+
+<strong><br> /Answer/string:question <br></strong>
+<br>
+This API endpoint returns the similarity of the asked question and the question in the QA database.
+A dictionary of format {question: [answer, similarity metric is sent]}
+<br>
+<br>
+<strong><br> /Server-Logs/<string:passcode> <br> </strong>
+<br>
+/Server-Logs/passcode returns the server logs including time of call, and call query
+<br>
+<br>
+<strong><br> /qa-dict-update/<string:passcode> <br></strong>
+<br>
+This endpoint updates the QA pair json file deleteing the original one. This only updates when passcode is given
+<br>
+<br>
+<strong><br> /help <br></strong>
+Brings you here
+
+<br>
+<br>
+<br>
+<strong>file structure</strong>>
+<br>
+Passcode is stores in a json format in /Answer/passcode.json
+<br>
+<br>
+Question Answer Pairs are stored in /Answer/qa-dict-update.json
+</body>
+</html>

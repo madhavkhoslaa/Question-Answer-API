@@ -6,7 +6,7 @@ from keras.models import load_model
 import pandas as pd
 import pickle
 import json
-from flask import Flask
+from flask import Flask, request, Response, render_template
 import os
 import time
 import datetime
@@ -67,21 +67,26 @@ def send_logs_pls(passcode):
         else:
             return {"Cannot Access": "Permission Denied, Incorrect Password"}
 
-"""
-@app.route("/Update-QA-FIle/<string:passcode>", methods=["POST"])
-def update_qa_dict(passcode):
-    ##################################
-    # Create method to update qa file#
-    ##################################
-    with open('Answers/passcode.json') as json_file:
-        data = json.load(json_file)
-        corr_pass = data["Passcode"]
-        if corr_pass == passcode:
-            content = read_file_send_content("logs/log.txt")
-            return {"Server Logs": content}
-        else:
-            return "Incorrect"
-"""
+@app.route("/qa-dict-update/<string:passcode>", methods=["POST"])
+def QA_update(passcode):
+        data_dict= request.get_json()
+        with open('Answers/passcode.json') as json_file:
+            data = json.load(json_file)
+            corr_pass = data["Passcode"]
+            if corr_pass == passcode:
+                with open('Answers/qa_pair.json', 'w') as f:
+                    json.dump(data_dict, f)
+                return {"Updated": data_dict}
+            else:
+                return {"Cannot Access": "Permission Denied, Incorrect Password"}
+@app.route("/help", methods=["GET"])
+def help_():
+    return render_template("help.html")
+
+@app.route("/", methods=["GET"])
+def slash():
+    return {"To get help go to /help endpoint": ""}
+    
 
 if __name__ == "__main__":
-    app.run(threaded=False)
+    app.run(threaded=True, debug=True)
