@@ -83,5 +83,5 @@ def update_qa_dict(passcode):
             return "Incorrect"
 """
 
-
-app.run(port=8000, debug=True, threaded=False)
+if __name__ == "__main__":
+    app.run(threaded=False)
