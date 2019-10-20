@@ -5,3 +5,4 @@ pandas==0.25.1
 gensim==3.8.1
 uwsgi
 gunicorn==19.7.1
+Keras==2.2.4
