@@ -70,6 +70,7 @@ def send_logs_pls(passcode):
 @app.route("/qa-dict-update/<string:passcode>", methods=["POST"])
 def QA_update(passcode):
         data_dict= request.get_json()
+        print(data_dict)
         with open('Answers/passcode.json') as json_file:
             data = json.load(json_file)
             corr_pass = data["Passcode"]
@@ -88,5 +89,6 @@ def slash():
     return {"To get help go to /help endpoint": ""}
     
 
+
 if __name__ == "__main__":
-    app.run(threaded=True, debug=True)
+    app.run(threaded=True, debug=True, port= 8080)
